@@ -1,10 +1,38 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-    >
-      <!--  -->
+     <v-navigation-drawer v-model="drawer" app>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="text-h6">
+            Vuetify
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            Task List
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list
+        dense
+        nav
+      >
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          :to="item.to"
+          link
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
     </v-navigation-drawer>
 
     <v-app-bar app>
@@ -21,6 +49,14 @@
 
 <script>
   export default {
-    data: () => ({ drawer: null }),
+    data() {
+      return {
+        drawer: null,
+        items: [
+          { title: 'Tasks', icon: 'mdi-view-dashboard', to: '/' },
+          { title: 'About', icon: 'mdi-help-box', to: '/about' },
+        ],
+      }
+    },
   }
 </script>
