@@ -39,6 +39,16 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title>Application</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn
+        class="ma-2"
+        color="orange darken-2"
+        dark
+      >
+        <v-icon dark>
+          mdi-email
+        </v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-main>
