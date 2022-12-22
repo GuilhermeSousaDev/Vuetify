@@ -5,14 +5,23 @@
       subheader
       three-line
     >
-      <v-subheader>General</v-subheader>
+      <v-col cols="12" sm="6">
+        <v-text-field 
+          v-model="taskTitle"
+          @keypress.enter="saveTask"
+          label="Task Title"
+          outlined
+          clearable
+        />
+      </v-col>
 
       <v-list-item-group
-        v-model="settings"
         multiple
         active-class=""
       >
-        <Task />
+        <div v-for="task, index in tasks" :key="index">
+          <Task :task="task" />
+        </div>
       </v-list-item-group>
     </v-list>
   </div>
@@ -25,8 +34,20 @@ import Task from '@/components/Tasks/Task.vue';
     name: 'Home',
     data() {
       return {
-        settings: [],
+        taskTitle: '',
+        tasks: [
+          { title: 'Go to Shopping', isCompleted: false },
+          { title: 'Sleep', isCompleted: false },
+        ],
       }
+    },
+    methods: {
+      saveTask() {
+        if (taskTitle.length) {
+          const task = { title: taskTitle, isCompleted: false };
+          this.tasks.push(task);
+        }
+      },
     },
     components: {
       Task
