@@ -43,9 +43,11 @@ import Task from '@/components/Tasks/Task.vue';
     },
     methods: {
       saveTask() {
-        if (taskTitle.length) {
-          const task = { title: taskTitle, isCompleted: false };
+        if (this.taskTitle.length) {
+          const task = { title: this.taskTitle, isCompleted: false };
           this.tasks.push(task);
+          
+          this.taskTitle = '';
         }
       },
     },
