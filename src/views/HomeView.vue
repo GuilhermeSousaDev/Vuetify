@@ -35,18 +35,20 @@ import Task from '@/components/Tasks/Task.vue';
     data() {
       return {
         taskTitle: '',
-        tasks: [
-          { title: 'Go to Shopping', isCompleted: false },
-          { title: 'Sleep', isCompleted: false },
-        ],
+      }
+    },
+    computed: {
+      tasks() {
+        return this.$store.state.tasks;
       }
     },
     methods: {
       saveTask() {
         if (this.taskTitle.length) {
-          const task = { title: this.taskTitle, isCompleted: false };
-          this.tasks.push(task);
-          
+          const id = new Date().getTime() + this.tasks.length;
+          const task = { id, title: this.taskTitle, isCompleted: false };
+          this.$store.commit('addTask', task);
+
           this.taskTitle = '';
         }
       },
