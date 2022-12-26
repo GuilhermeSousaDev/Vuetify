@@ -16,14 +16,26 @@
                 {{ task.title }}
               </v-list-item-title>
             </v-list-item-content>
+
+            <v-list-item-action>
+              <v-btn icon @click.stop="() => deleteTask(task.id)">
+                <v-icon color="red darken-2">mdi-trash-can</v-icon>
+              </v-btn>
+            </v-list-item-action>
           </template>
         </v-list-item>
+        <v-divider />
     </div>
 </template>
 
 <script>
 export default {
     name: 'Task',
-    props: ['task']
+    props: ['task'],
+    methods: {
+      deleteTask(id) {
+        this.$store.commit('removeTask', id);
+      }
+    }
 }
 </script>

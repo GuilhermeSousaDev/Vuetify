@@ -5,16 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    tasks: [
-      { title: 'Go to Shopping', isCompleted: false },
-      { title: 'Sleep', isCompleted: false },
-    ],
+    tasks: [],
   },
   getters: {
   },
   mutations: {
     addTask(state, payload) {
       state.tasks.push(payload);
+    },
+    removeTask(state, payload) {
+      state.tasks = state.tasks.filter(task => task.id !== payload);
     }
   },
   actions: {
