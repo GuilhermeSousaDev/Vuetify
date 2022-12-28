@@ -18,9 +18,7 @@
             </v-list-item-content>
 
             <v-list-item-action>
-              <v-btn icon @click.stop="() => deleteTask(task.id)">
-                <v-icon color="red darken-2">mdi-trash-can</v-icon>
-              </v-btn>
+              <TaskMenu />
             </v-list-item-action>
           </template>
         </v-list-item>
@@ -29,9 +27,12 @@
 </template>
 
 <script>
+import TaskMenu from './TaskMenu.vue';
+
 export default {
     name: 'Task',
     props: ['task'],
+    components: { TaskMenu },
     methods: {
       deleteTask(id) {
         this.$store.commit('removeTask', id);
