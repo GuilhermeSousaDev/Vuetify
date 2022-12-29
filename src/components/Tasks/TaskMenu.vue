@@ -25,25 +25,29 @@
         </v-list-item>
       </v-list>
     </v-menu>
+    <EditModal />
 </div>
 </template>
 
 <script>
+import EditModal from '../Modal/EditModal.vue';
+
 export default {
+    components: { EditModal },
     data: () => ({
       items: [
         {  
             title: 'Edit', 
             icon: 'mdi-pencil', 
             action() {
-                console.log('Edit')
+              console.log('Edit');
             }
         },
         { 
             title: 'Delete', 
             icon: 'mdi-trash-can',
             action() {
-                console.log('Delete')
+                console.log('Delete');
             }
         },
       ],
