@@ -16,7 +16,7 @@
         <v-list-item
           v-for="(item, index) in items"
           :key="index"
-          @click="item.action"
+          @click="item.action == 'edit' ? toggleEditModal() : toggleDeleteModal()"
         >
           <v-icon left>
             {{ item.icon }}
@@ -25,7 +25,7 @@
         </v-list-item>
       </v-list>
     </v-menu>
-    <EditModal />
+    <EditModal v-if="isShowEditModal" @closeModal="toggleEditModal" />
 </div>
 </template>
 
@@ -34,24 +34,31 @@ import EditModal from '../Modal/EditModal.vue';
 
 export default {
     components: { EditModal },
-    data: () => ({
-      items: [
-        {  
-            title: 'Edit', 
-            icon: 'mdi-pencil', 
-            action() {
-              console.log('Edit');
-            }
-        },
-        { 
-            title: 'Delete', 
-            icon: 'mdi-trash-can',
-            action() {
-                console.log('Delete');
-            }
-        },
-      ],
-    }),
+    data() {
+      return {     
+        isShowEditModal: false,
+        items: [
+          {  
+              title: 'Edit', 
+              icon: 'mdi-pencil', 
+              action: 'edit',
+          },
+          { 
+              title: 'Delete', 
+              icon: 'mdi-trash-can',
+              action: 'delete',
+          },
+        ],
+      }
+    },
+    methods: {
+      toggleEditModal() {
+        this.isShowEditModal = !this.isShowEditModal;
+      },
+      deleteModal() {
+        console.log('delete');
+      }
+    },
 }
 </script>
 

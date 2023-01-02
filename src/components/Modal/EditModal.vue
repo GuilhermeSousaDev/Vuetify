@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-dialog v-model="showModal" persistent max-width="290">
+        <v-dialog v-model="dialog" persistent max-width="290">
             <v-card>
                 <v-card-title class="text-h5">
                     Edit
@@ -15,10 +15,10 @@
                 />
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="red darken-1" @click="showModal = false">
+                    <v-btn color="red darken-1" @click="$emit('closeModal')">
                         Cancel
                     </v-btn>
-                    <v-btn color="green darken-1" @click="showModal = false">
+                    <v-btn color="green darken-1" @click="dialog = false">
                         Edit
                     </v-btn>
                 </v-card-actions>
@@ -30,6 +30,10 @@
 <script>
   export default {
     name: 'EditModal',
-    props: ['showModal'],
+    data() {
+        return {
+            dialog: true,
+        }
+    },
   }
 </script>
