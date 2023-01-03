@@ -15,6 +15,15 @@ export default new Vuex.Store({
     },
     removeTask(state, payload) {
       state.tasks = state.tasks.filter(task => task.id !== payload);
+    },
+    updateTask(state, payload) {
+      state.tasks.map(task => {
+        if (task.id === payload.id) {
+          return task = payload;
+        } else {
+          return task;
+        }
+      });
     }
   },
   actions: {

@@ -18,7 +18,7 @@
             </v-list-item-content>
 
             <v-list-item-action>
-              <TaskMenu />
+              <TaskMenu :task="task" />
             </v-list-item-action>
           </template>
         </v-list-item>

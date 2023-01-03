@@ -12,13 +12,14 @@
                     label="Title"
                     placeholder="Title"
                     outlined
+                    v-model="taskTitle"
                 />
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="red darken-1" @click="$emit('closeModal')">
                         Cancel
                     </v-btn>
-                    <v-btn color="green darken-1" @click="dialog = false">
+                    <v-btn color="green darken-1" @click="editTask">
                         Edit
                     </v-btn>
                 </v-card-actions>
@@ -30,10 +31,23 @@
 <script>
   export default {
     name: 'EditModal',
+    props: ['taskId'],
     data() {
         return {
             dialog: true,
+            taskTitle: '',
         }
     },
+    methods: {
+        editTask() {
+            const task = {
+                id: this.taskId,
+                title: this.taskTitle,
+                isCompleted: false,
+            }
+
+            this.$store.commit('updateTask', task);
+        }
+    }
   }
 </script>

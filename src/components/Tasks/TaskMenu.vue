@@ -25,7 +25,13 @@
         </v-list-item>
       </v-list>
     </v-menu>
-    <EditModal v-if="isShowEditModal" @closeModal="toggleEditModal" />
+    <EditModal 
+      v-if="isShowEditModal" 
+      @closeModal="toggleEditModal" 
+      :taskId="task.id"
+    />
+
+    {{ task.title }}
 </div>
 </template>
 
@@ -33,6 +39,7 @@
 import EditModal from '../Modal/EditModal.vue';
 
 export default {
+    props: ['task'],
     components: { EditModal },
     data() {
       return {     
