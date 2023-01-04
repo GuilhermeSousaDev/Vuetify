@@ -16,7 +16,7 @@
         <v-list-item
           v-for="(item, index) in items"
           :key="index"
-          @click="item.action == 'edit' ? toggleEditModal() : toggleDeleteModal()"
+          @click="item.action == 'edit' ? toggleEditModal() : deleteTask()"
         >
           <v-icon left>
             {{ item.icon }}
@@ -28,10 +28,8 @@
     <EditModal 
       v-if="isShowEditModal" 
       @closeModal="toggleEditModal" 
-      :taskId="task.id"
+      :task="task"
     />
-
-    {{ task.title }}
 </div>
 </template>
 
@@ -62,8 +60,8 @@ export default {
       toggleEditModal() {
         this.isShowEditModal = !this.isShowEditModal;
       },
-      deleteModal() {
-        console.log('delete');
+      deleteTask() {
+        this.$store.commit('removeTask', this.task.id);
       }
     },
 }

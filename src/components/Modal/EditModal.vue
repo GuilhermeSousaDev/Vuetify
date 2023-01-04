@@ -31,22 +31,22 @@
 <script>
   export default {
     name: 'EditModal',
-    props: ['taskId'],
+    props: ['task'],
     data() {
         return {
             dialog: true,
-            taskTitle: '',
+            taskTitle: this.task.title,
         }
     },
     methods: {
         editTask() {
             const task = {
-                id: this.taskId,
+                id: this.task.id,
                 title: this.taskTitle,
-                isCompleted: false,
             }
 
             this.$store.commit('updateTask', task);
+            this.$emit('closeModal');
         }
     }
   }
